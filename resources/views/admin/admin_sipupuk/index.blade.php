@@ -33,10 +33,19 @@
                         <form class="input-group search-custom " action="{{ route('cari') }}" method="GET">
                             <input class="form-control" type="search" placeholder="Masukkan kata kunci..."
                                 aria-label="Masukkan kata kunci..." aria-describedby="button-search" name="search"
-                                value="{{ old('cari') }}" type="submit" />
+                                value="{{ request('search') }}" />
+                            <button class="btn btn-custom search-btn" type="submit" id="button-search">
+                                <i class="bi bi-search"></i>
+                            </button>
                         </form>
                     </div>
                 </div>
+                <!-- @if(isset($query) && !empty($query))
+                <div class="alert alert-info">
+                    Hasil pencarian untuk: <strong>{{ $query }}</strong>
+                    <a href="{{ route('adminsipupuk.index') }}" class="btn btn-sm btn-outline-secondary ml-2">Reset</a>
+                </div>
+                @endif -->
                 <div class="card border-0 shadow rounded p-2 mt-3 ">
                     <table class="table table-striped table-bordered-less table-hover">
                         <thead class="text-center">
@@ -161,6 +170,12 @@
 .btn-custom:hover {
     background-color: #224038;
     color: #ffffff;
+}
+
+.btn-custom.search-btn {
+    width: auto;
+    height: 42px;
+    border: 1px solid #224038;
 }
 
 .text-hijau {

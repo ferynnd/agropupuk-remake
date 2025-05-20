@@ -33,8 +33,8 @@ class Admin
                 return redirect('/login')->with('warning', 'Sesi anda telah habis. Silahkan login kembali.');
             }
 
-            // Memeriksa apakah pengguna adalah admin
-            if (Auth::user()->role == 'admin') {
+            // Memeriksa apakah pengguna adalah admin atau superadmin
+            if (Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin') {
                 return $next($request);
             } else {
                 Auth::logout();

@@ -38,6 +38,14 @@
             </li>
         </ul>
         <ul class="menu_bawah ps-0 mb-0">
+            @if (Auth::user()->role == 'superadmin')
+                <li class="{{ request()->is('register') ? 'active' : '' }}">
+                    <a href="{{ url('/register') }}"
+                        class="menu flex-fill d-flex align-items-center justify-content-start">
+                        <i class="bx bx-user-plus d-flex align-items-center justify-content-center"></i>
+                        <span class="nama_nav">Buat Admin</span></a>
+                </li>
+            @endif
             <li class="{{ request()->is('admin/profile/*') ? 'active' : '' }}">
                 <a href="{{ url('/admin/profile/edit') }}"
                     class="menu flex-fill d-flex align-items-center justify-content-start">

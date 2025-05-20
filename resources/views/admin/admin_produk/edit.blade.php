@@ -134,6 +134,7 @@
                             <div class="form-group mt-4">
                                 <button type="submit" class="btn btn-md btn-primary">UPDATE</button>
                                 <button type="reset" class="btn btn-md btn-warning">RESET</button>
+                                <a href="{{ route('adminproduk.index') }}" class="btn btn-md btn-secondary" style="background-color: #224038;">KEMBALI</a>
                             </div>
                         </form>
                     </div>

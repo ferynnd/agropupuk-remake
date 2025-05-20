@@ -87,21 +87,31 @@
     <script>
         //message with sweetalert
         @if (session('success'))
-            Swal.fire({
-                icon: "success",
-                title: "BERHASIL",
-                text: "{{ session('success') }}",
-                showConfirmButton: false,
-                timer: 2000
-            });
+            // Cek apakah notifikasi dengan ID ini sudah pernah ditampilkan
+            if (!sessionStorage.getItem('success_shown_{{ session()->getId() }}')) {
+                Swal.fire({
+                    icon: "success",
+                    title: "BERHASIL",
+                    text: "{{ session('success') }}",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                // Tandai notifikasi ini sudah ditampilkan
+                sessionStorage.setItem('success_shown_{{ session()->getId() }}', '1');
+            }
         @elseif (session('error'))
-            Swal.fire({
-                icon: "error",
-                title: "GAGAL!",
-                text: "{{ session('error') }}",
-                showConfirmButton: false,
-                timer: 2000
-            });
+            // Cek apakah notifikasi dengan ID ini sudah pernah ditampilkan
+            if (!sessionStorage.getItem('error_shown_{{ session()->getId() }}')) {
+                Swal.fire({
+                    icon: "error",
+                    title: "GAGAL!",
+                    text: "{{ session('error') }}",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                // Tandai notifikasi ini sudah ditampilkan
+                sessionStorage.setItem('error_shown_{{ session()->getId() }}', '1');
+            }
         @endif
     </script>
 @endsection

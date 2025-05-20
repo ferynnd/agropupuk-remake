@@ -161,8 +161,13 @@
 </head>
 
 <body style="background: #e3e3e3">
+    <div class="container mt-3">
+        <a href="{{ route('adminproduk.index') }}" class="btn btn-secondary" style="background-color: #224038;">
+            <i class="fa fa-arrow-left"></i> Kembali
+        </a>
+    </div>
 
-    <div class="container bg-white d-flex rounded-2" style="width: 90%; margin:auto; margin-top: 7%; margin-bottom: 5%; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);">
+    <div class="container bg-white d-flex rounded-2" style="width: 90%; margin:auto; margin-top: 3%; margin-bottom: 5%; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);">
         <div class="gambar" style="width: 40%">
             <div class="card border-0 rounded" style="width: 90%; margin:auto;">
                 <div class="card-body">

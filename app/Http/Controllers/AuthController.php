@@ -18,25 +18,25 @@ class AuthController extends Controller
 {
     public function register()
     {
-        if (Auth::check()) {
-            if (Auth::User()->role == 'admin') {
-                return redirect('/admin/dashboard');
-            } else {
-                return redirect('/login');
-            }
-        } else {
+        if (Auth::check() && Auth::User()->role == 'superadmin') {
             return view('admin.auth.register');
+        } else {
+            return redirect('/login')->with(['error' => 'Anda tidak memiliki akses ke halaman ini']);
         }
     }
 
     public function process_register(Request $request): RedirectResponse
     {
+        if (!Auth::check() || Auth::User()->role !== 'superadmin') {
+            return redirect('/login')->with(['error' => 'Unauthorized access']);
+        }
+
         $request->validate([
             'username' => 'required|max:255|regex:/^\S*$/|unique:users,username',
             'email' => 'required|email|max:255|unique:users,email|regex:/@gmail\.com$/',
             'password' => 'required|min:8',
             'konfirmasi_password' => 'required|same:password',
-        ],[
+        ], [
             'username.unique' => 'Username sudah terdaftar',
             'username.regex' => 'Username tidak boleh mengandung spasi',
             'email.required' => 'Email harus diisi',
@@ -49,7 +49,6 @@ class AuthController extends Controller
             'konfirmasi_password.same' => 'Konfirmasi Password harus sama dengan Password',
         ]);
 
-
         $id = date('YmdHis');
 
         User::create([
@@ -58,16 +57,17 @@ class AuthController extends Controller
             'email' => $request->email,
             'nama' => $request->username,
             'password' => Hash::make($request->password),
-            'remember_token'    => Str::random(20),
+            'role' => 'admin',
+            'remember_token' => Str::random(20),
         ]);
 
-        return redirect('/login')->with(['success' => 'Register Berhasil']);
+        return redirect('/admin/dashboard')->with(['success' => 'Admin baru berhasil dibuat']);
     }
 
     public function login()
     {
         if (Auth::check()) {
-            if (Auth::User()->role == 'admin') {
+            if (Auth::User()->role == 'superadmin' || Auth::User()->role == 'admin') {
                 return redirect('/admin/dashboard');
             } else {
                 return redirect('/login');
@@ -82,7 +82,7 @@ class AuthController extends Controller
         $request->validate([
             'username' => 'required|max:255|regex:/^\S*$/',
             'password' => 'required|min:8',
-        ],[
+        ], [
             'username.required' => 'Username harus diisi',
             'username.regex' => 'Username tidak boleh mengandung spasi',
             'password.required' => 'Password harus diisi',
@@ -90,14 +90,9 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password], true)) {
-
-            // $session = Carbon::tomorrow()->startOfDay();
-
-            // $request->session()->put('deskripsi', $session);
-
             $request->user()->update(['session_expiry' => Carbon::tomorrow()->startOfDay()]);
 
-            if (Auth::User()->role == 'admin') {
+            if (Auth::User()->role == 'superadmin' || Auth::User()->role == 'admin') {
                 return redirect('/admin/dashboard')->with(['success' => 'Login berhasil']);
             } else {
                 return redirect('/login')->with(['warning' => 'Cek username dan password apakah sudah benar']);
@@ -129,7 +124,7 @@ class AuthController extends Controller
         $request->validate([
             'kode' => 'required',
             'konfirmasi_kode' => 'required|same:kode|max:5',
-        ],[
+        ], [
             'konfirmasi_kode.required' => 'Konfirmasi Kode harus diisi',
             'konfirmasi_kode.same' => 'Konfirmasi Kode harus sama dengan Kode',
             'konfirmasi_kode.max' => 'Konfirmasi Kode maksimal 8 karakter',
@@ -154,7 +149,7 @@ class AuthController extends Controller
             'username' => 'required|max:255|regex:/^\S*$/',
             'pass' => 'required',
             'conf_pass' => 'required|same:pass',
-        ],[
+        ], [
             'username.required' => 'Username harus diisi',
             'username.regex' => 'Username tidak boleh mengandung spasi',
             'pass.required' => 'Password harus diisi',
@@ -177,7 +172,7 @@ class AuthController extends Controller
     public function logout(): RedirectResponse
     {
         Auth::logout();
-        
+
         return redirect('/login')->with(['success' => 'Logout Berhasil']);
     }
 }

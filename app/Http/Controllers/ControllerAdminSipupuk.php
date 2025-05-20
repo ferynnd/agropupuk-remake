@@ -186,10 +186,12 @@ class ControllerAdminSipupuk extends Controller
 
     public function cari(Request $request) : View
     {
-        $query = $request->get('cari');
+        // Mengambil data admin terautentikasi
+        $admin = User::find(Auth::id());
+        $title = 'Artikel | ADMIN';
 
         // Ambil nilai pencarian dari input
-        $query = $request->input('cari');
+        $query = $request->input('search');
 
         if ($query) {
             // Jika terdapat query pencarian
@@ -199,7 +201,7 @@ class ControllerAdminSipupuk extends Controller
             $sipupuks = Sipupuk::latest()->paginate(10);
         }
 
-        return view('admin.admin_sipupuk.index',['kunci' => $query], compact('sipupuks' ,'query'));
+        return view('admin.admin_sipupuk.index', compact('sipupuks', 'admin', 'title', 'query'));
     }
 
 };

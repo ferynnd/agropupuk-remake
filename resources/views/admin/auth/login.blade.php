@@ -30,7 +30,8 @@
                     <i class="fa fa-user" id="user_icon"></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" name="password" class="@error('password') is-invalid @enderror" name="password" id="pass" required />
+                    <input type="password" name="password" class="@error('password') is-invalid @enderror"
+                        name="password" id="pass" required />
                     <label for="pass" id="labelpass">Password</label>
                     <i class="fa fa-eye-slash" id="pass_icon"></i>
                 </div>
@@ -43,10 +44,10 @@
                 <div class="input-box button">
                     <input id="button" type="submit" value="Submit" class="" required />
                 </div>
-                <div class="register">
+                {{-- <div class="register">
                     <span class="text">Tidak punya akun? </span><a href="{{ url('/register') }}" class="link">Daftar
                         Sekarang</a>
-                </div>
+                </div> --}}
             </form>
         </div>
         <div class="position-absolute end-0 bottom-0 me-3 mb-3">
