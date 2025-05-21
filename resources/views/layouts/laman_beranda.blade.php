@@ -107,18 +107,27 @@
         <!-- Info Prodduk -->
 
 
-        <div class="w-100 bg-hijau shadow" style="height: 400px; margin-bottom: 7%;">
-            <img src="{{ asset('storage/image/bgImg.png') }}" class="img-fluid-custom"  alt=" Galeri 2" />
-            <h1 class="fw-bold text-center position-relative text-white fs-full">AGROPUPUK</h1>
-            <h3 class=" text-center position-relative text-white fs-end overflow-hidden">
+        <!-- Tentang AGROPUPUK - Responsive Section -->
+        <div class="w-100 position-relative shadow" style="background-color: #1c2424; padding: 5% 0; margin-bottom: 7%; overflow: hidden;">
+            <!-- Background tetap tidak diubah -->
+            <img src="{{ asset('storage/image/bgImg.png') }}"
+                class="position-absolute top-0 start-0 w-100 h-100"
+                style="object-fit: cover; opacity: 1; z-index: 1;"
+                alt="Background AGROPUPUK" />
 
-                hadir sebagai mitra terpercaya bagi para petani di Indonesia. Kami menyediakan berbagai jenis pupuk berkualitas tinggi, <br>
-                baik organik maupun kimia, untuk memenuhi kebutuhan budidaya tanaman Anda. Tak hanya itu, <br>
-                kami juga menawarkan informasi pertanian yang lengkap dan terkini
-                untuk membantu Anda <br> meningkatkan hasil panen dan mencapai kesuksesan dalam bertani.
-
-            </h3>
+            <!-- Teks konten -->
+            <div class="container position-relative text-white text-center px-3 px-md-5" style="z-index: 2;">
+                <h1 class="fw-bold mb-4 display-5">AGROPUPUK</h1>
+                <p class="fs-5 mb-0">
+                    Hadir sebagai mitra terpercaya bagi para petani di Indonesia. Kami menyediakan berbagai jenis pupuk berkualitas tinggi,
+                    baik organik maupun kimia, untuk memenuhi kebutuhan budidaya tanaman Anda. Tak hanya itu,
+                    kami juga menawarkan informasi pertanian yang lengkap dan terkini untuk membantu Anda
+                    meningkatkan hasil panen dan mencapai kesuksesan dalam bertani.
+                </p>
+            </div>
         </div>
+
+
 
         <div class="container mb ">
             <div class="w-100">

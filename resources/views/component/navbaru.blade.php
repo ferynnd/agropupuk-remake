@@ -30,32 +30,36 @@
                         <i class="fa-solid text-white fa-bars"></i>
                     </button>
                 </div>
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                    <div class="offcanvas-header" style="background-color: #1b342d" >
-                        <img src="{{ asset('storage/image/logoweb.png') }}" alt="Logo Web" width="180" height="25"
-                        class="offcanvas-title right-2" id="offcanvasRightLabel" >
-                        <button type="button" class="btn-close bg-white " data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body" style="background-color: #224038;">
-                        <ul class="side-list">
-                            <li class="side-list-item py-3" >
-                                <a href="{{ route('beranda') }}" class="side-link" >Beranda</a>
-                            </li>
-                            <li class="side-list-item py-3">
-                                <a href="{{ route('produk.index') }}" class="side-link" >Produk</a>
-                            </li>
-                            <li class="side-list-item py-3">
-                                <a href="{{ route('berita') }}" class="side-link" >Berita</a>
-                            </li>
-                            <li class="side-list-item py-3">
-                                <a href="{{ route('sipupuk.index') }}" class="side-link" >Si Pupuk</a>
-                            </li>
-                            <li class="side-list-item py-3">
-                                <a href="{{ route('tentangkami') }}" class="side-link" >Tentang Kami</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+     style="background: rgba(39, 99, 64, 0.162); backdrop-filter: blur(0.01px); -webkit-backdrop-filter: blur(0.01px); border-left: 1px solid rgba(255, 255, 255, 0.1);">
+
+    <div class="offcanvas-header" style="background: transparent; border-bottom: 1px solid rgba(3, 139, 14, 0.334);">
+        <img src="{{ asset('storage/image/logoweb.png') }}" alt="Logo Web" width="180" height="25"
+             class="offcanvas-title right-2" id="offcanvasRightLabel">
+        <button type="button" class="btn-close bg-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body" style="background: transparent;">
+        <ul class="side-list">
+            <li class="side-list-item py-3">
+                <a href="{{ route('beranda') }}" class="side-link">Beranda</a>
+            </li>
+            <li class="side-list-item py-3">
+                <a href="{{ route('produk.index') }}" class="side-link">Produk</a>
+            </li>
+            <li class="side-list-item py-3">
+                <a href="{{ route('berita') }}" class="side-link">Berita</a>
+            </li>
+            <li class="side-list-item py-3">
+                <a href="{{ route('sipupuk.index') }}" class="side-link">Si Pupuk</a>
+            </li>
+            <li class="side-list-item py-3">
+                <a href="{{ route('tentangkami') }}" class="side-link">Tentang Kami</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
             </div>
         </div>
     </nav>
