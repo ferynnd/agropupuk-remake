@@ -24,7 +24,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\ControllerProfilAdmin;
 
+use App\Http\Controllers\Auth\PasswordResetController;
 
+use App\Http\Controllers\VersionController;
 //default route
 // Route::get('/', function () {
 //     return view('welcome');
@@ -44,6 +46,12 @@ Route::resource('/', ControllerLamanBeranda::class)->names([
 
 Route::delete('/admin/adminberanda/delete/{id}', [ControllerLamanBeranda::class, 'destroy'])->name('delete');
 
+
+Route::get('/password/reset-request', [PasswordResetController::class, 'showRequestForm'])->name('password.request');
+Route::post('/password/send-code', [PasswordResetController::class, 'sendResetCode'])->name('password.send.code');
+
+Route::get('/password/reset-form', [PasswordResetController::class, 'showResetForm'])->name('password.reset.form');
+Route::post('/password/reset', [PasswordResetController::class, 'resetPassword'])->name('password.reset');
 
 
 
@@ -94,6 +102,9 @@ Route::get('/listpro/list-produk', function () {
     return view('/listpro/list-produk');
 });
 
+
+Route::get('/version', [VersionController::class, 'showLastUpdate']);
+Route::get('/version/list', [VersionController::class, 'listLastUpdate']);
 
 
 Route::get('/listproduk', [ControllerAdminUserMutualism::class, 'userlist'])->name('listproduk');
