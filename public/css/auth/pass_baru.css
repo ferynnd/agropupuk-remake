@@ -19,6 +19,10 @@
 
 body {
     background-color: var(--hijau);
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    height: 100dvh;
 }
 
 .card-login {
@@ -122,10 +126,6 @@ body {
 .input-box input:focus~i,
 .input-box input:valid~i {
     color: var(--hijau);
-}
-
-.input-box input.active {
-    cursor: not-allowed;
 }
 
 .input-box i {
